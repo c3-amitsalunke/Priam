@@ -80,7 +80,6 @@ public class PriamInstanceResource
      * 
      * @param id the node id
      * @return the priam instance
-     * @throws WebApplicationException(404) if no priam instance found with {@code id}
      */
     @GET
     @Path("{id}")

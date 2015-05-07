@@ -113,10 +113,6 @@ public abstract class AbstractBackupPath implements Comparable<AbstractBackupPat
         this.size = file.length();
     }
 
-    /**
-     * Given a date range, find a common string prefix Eg: 20120212, 20120213 =>
-     * 2012021
-     */
     public String match(Date start, Date end)
     {
         String sString = formatDate(start);

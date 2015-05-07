@@ -19,6 +19,7 @@ import org.apache.commons.io.IOUtils;
 import org.xerial.snappy.SnappyOutputStream;
 
 import java.io.ByteArrayOutputStream;
+import java.io.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
@@ -30,7 +31,8 @@ public class ChunkedStream implements Iterator<byte[]>
 {
     private boolean hasnext = true;
     private ByteArrayOutputStream bos;
-    private SnappyOutputStream compress;
+//    private SnappyOutputStream compress;
+    private BufferedOutputStream compress;
     private InputStream origin;
     private long chunkSize;
     private static int BYTES_TO_READ = 2048;
@@ -39,7 +41,8 @@ public class ChunkedStream implements Iterator<byte[]>
     {
         this.origin = is;
         this.bos = new ByteArrayOutputStream();
-        this.compress = new SnappyOutputStream(bos);
+//        this.compress = new SnappyOutputStream(bos);
+        this.compress = new BufferedOutputStream(bos);
         this.chunkSize = chunkSize;
     }
 

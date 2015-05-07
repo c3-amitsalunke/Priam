@@ -74,14 +74,14 @@ public class DoubleRing
         }
 
         int new_ring_size = local.size() * 2;
-        for (PriamInstance data : filteredRemote(factory.getAllIds(config.getAppName())))
+/*        for (PriamInstance data : filteredRemote(factory.getAllIds(config.getAppName())))
         {
             // if max then rotate.
             int currentSlot = data.getId() - hash;
             int new_slot = currentSlot + 3 > new_ring_size ? (currentSlot + 3) - new_ring_size : currentSlot + 3;
             String token = tokenManager.createToken(new_slot, new_ring_size, config.getDC());
             factory.create(data.getApp(), new_slot + hash, InstanceIdentity.DUMMY_INSTANCE_ID, config.getHostname(), config.getHostIP(), data.getRac(), null, token);
-        }
+        }*/
     }
 
     // filter other DC's
@@ -123,8 +123,8 @@ public class DoubleRing
      */
     public void restore() throws IOException, ClassNotFoundException
     {
-        for (PriamInstance data : filteredRemote(factory.getAllIds(config.getAppName())))
-            factory.delete(data);
+        /*for (PriamInstance data : filteredRemote(factory.getAllIds(config.getAppName())))
+            factory.delete(data);*/
 
         // read from the file.
         InputStream in = new FileInputStream(TMP_BACKUP_FILE);

@@ -55,7 +55,8 @@ public class SnappyCompression implements ICompression
 
     private void decompress(InputStream input, OutputStream output) throws IOException
     {
-        SnappyInputStream is = new SnappyInputStream(new BufferedInputStream(input));
+        //SnappyInputStream is = new SnappyInputStream(new BufferedInputStream(input));
+        BufferedInputStream is = new BufferedInputStream(input);
         byte data[] = new byte[BUFFER];
         BufferedOutputStream dest1 = new BufferedOutputStream(output, BUFFER);
         try

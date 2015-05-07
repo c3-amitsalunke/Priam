@@ -30,7 +30,7 @@ import com.netflix.priam.identity.token.IPreGeneratedTokenRetriever;
 import com.netflix.priam.identity.token.NewTokenRetriever;
 import com.netflix.priam.identity.token.PreGeneratedTokenRetriever;
 import com.netflix.priam.ICredential;
-
+import com.netflix.priam.aws.IAMCredential;
 
 public class PriamGuiceModule extends AbstractModule
 {
@@ -42,7 +42,7 @@ public class PriamGuiceModule extends AbstractModule
         bind(IBackupFileSystem.class).annotatedWith(Names.named("backup")).to(S3FileSystem.class);
         bind(IBackupFileSystem.class).annotatedWith(Names.named("incr_restore")).to(S3FileSystem.class);
         bind(IBackupFileSystem.class).annotatedWith(Names.named("backup_status")).to(S3FileSystem.class);
-        bind(ICredential.class).to(ClearCredential.class);
+        bind(ICredential.class).to(IAMCredential.class);
         bind(IDeadTokenRetriever.class).to(DeadTokenRetriever.class);
         bind(IPreGeneratedTokenRetriever.class).to(PreGeneratedTokenRetriever.class);
         bind(INewTokenRetriever.class).to(NewTokenRetriever.class);
