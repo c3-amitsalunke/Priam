@@ -64,7 +64,7 @@ public abstract class Task implements Job, TaskMBean
         }
         catch (Exception e)
         {
-            throw Throwables.propagate(e);
+            //throw Throwables.propagate(e);
         }
     }
 

@@ -4,7 +4,7 @@ status = project.hasProperty('preferredStatus')?project.preferredStatus:(version
 subprojects { project ->
     apply plugin: 'java' // Plugin as major conventions
 
-    sourceCompatibility = 1.6
+    sourceCompatibility = 1.8
 
     // Restore status after Java plugin
     status = rootProject.status
@@ -54,8 +54,8 @@ subprojects { project ->
     project.sourceSets {
         main.compileClasspath += project.configurations.provided
         main.runtimeClasspath -= project.configurations.provided
-        test.compileClasspath += project.configurations.provided
-        test.runtimeClasspath += project.configurations.provided
+        //test.compileClasspath += project.configurations.provided
+        //test.runtimeClasspath += project.configurations.provided
     }
 }
 
