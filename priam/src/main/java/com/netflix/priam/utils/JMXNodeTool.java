@@ -59,9 +59,9 @@ public class JMXNodeTool extends NodeProbe
     /**
      * Hostname and Port to talk to will be same server for now optionally we
      * might want the ip to poll.
-     * 
+     *
      * NOTE: This class shouldn't be a singleton and this shouldn't be cached.
-     * 
+     *
      * This will work only if cassandra runs.
      */
     public JMXNodeTool(String host, int port) throws IOException, InterruptedException
@@ -77,7 +77,7 @@ public class JMXNodeTool extends NodeProbe
 
     /**
      * try to create if it is null.
-     * @throws IOException 
+     * @throws IOException
      */
     public static JMXNodeTool instance(IConfiguration config) throws JMXConnectionException
     {
@@ -112,14 +112,21 @@ public class JMXNodeTool extends NodeProbe
         // connecting first time hence return false.
         if (tool == null)
             return false;
-        
+
         try
         {
             tool.isInitialized();
         }
         catch (Throwable ex)
         {
-            SystemUtils.closeQuietly(tool);
+            try
+            {
+                SystemUtils.closeQuietly(tool);
+            }
+            catch (Throwable e)
+            {
+                logger.error(e.getMessage(), e);
+            }
             return false;
         }
         return true;
@@ -128,14 +135,14 @@ public class JMXNodeTool extends NodeProbe
     public static synchronized JMXNodeTool connect(final IConfiguration config) throws JMXConnectionException
     {
     		JMXNodeTool jmxNodeTool = null;
-    		
+
 		// If Cassandra is started then only start the monitoring
 		if (!CassandraMonitor.isCassadraStarted()) {
 			String exceptionMsg = "Cassandra is not yet started, check back again later";
 			logger.debug(exceptionMsg);
 			throw new JMXConnectionException(exceptionMsg);
-		}        		
-    		
+		}
+
     		try {
     				jmxNodeTool = new BoundedExponentialRetryCallable<JMXNodeTool>()
 						{
