@@ -193,7 +193,7 @@ public class PriamConfiguration implements IConfiguration
     private final int DEFAULT_HINTS_THROTTLE_KB = 1024; //default value from 1.2 yaml
     private final String DEFAULT_INTERNODE_COMPRESSION = "all";  //default value from 1.2 yaml
     
-    private static final String DEFAULT_RPC_SERVER_TYPE = "hsha";
+    private static final String DEFAULT_RPC_SERVER_TYPE = "sync";
     private static final int DEFAULT_INDEX_INTERVAL = 256;
     
     
