@@ -14,9 +14,11 @@ import com.google.inject.Provider;
 import com.google.inject.name.Named;
 import com.netflix.priam.backup.AbstractBackupPath.BackupFileType;
 import com.netflix.priam.utils.RetryableCallable;
+import com.google.inject.Singleton;
 
 
 //Providing this if we want to use it outside Quart
+@Singleton
 public class CommitLogBackup
 {
   private static final Logger logger = LoggerFactory.getLogger(CommitLogBackup.class);
