@@ -74,7 +74,8 @@ public class DoubleRing
         }
 
         int new_ring_size = local.size() * 2;
-        for (PriamInstance data : filteredRemote(factory.getAllIds(config.getAppName())))
+        List<PriamInstance> instanceList = factory.getAllIds(config.getAppName());
+        for (PriamInstance data : filteredRemote(instanceList))
         {
             // if max then rotate.
             int currentSlot = data.getId() - hash;
@@ -123,7 +124,8 @@ public class DoubleRing
      */
     public void restore() throws IOException, ClassNotFoundException
     {
-        for (PriamInstance data : filteredRemote(factory.getAllIds(config.getAppName())))
+        List<PriamInstance> instanceList = factory.getAllIds(config.getAppName());
+        for (PriamInstance data : filteredRemote(instanceList))
             factory.delete(data);
 
         // read from the file.

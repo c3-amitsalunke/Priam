@@ -13,6 +13,11 @@ allprojects {
     repositories { 
         mavenCentral() // maven { url: 'http://jcenter.bintray.com' }
     }
+    if (JavaVersion.current().isJava8Compatible()) {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
 }
 
 apply from: file('gradle/convention.gradle')
@@ -56,7 +61,7 @@ subprojects {
         compile "com.googlecode.json-simple:json-simple:1.1"
         compile "org.xerial.snappy:snappy-java:1.0.5-M3"
         compile "org.yaml:snakeyaml:1.10"
-        compile "org.apache.cassandra:cassandra-all:2.0.9" //TODO: check if we should pin to 2.0
+        compile "org.apache.cassandra:cassandra-all:2.0.14" //TODO: check if we should pin to 2.0
         compile "javax.ws.rs:jsr311-api:1.1.1"
         compile "joda-time:joda-time:2.0"
         compile "commons-configuration:commons-configuration:1.5"
