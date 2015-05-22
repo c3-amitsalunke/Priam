@@ -103,7 +103,8 @@ public class S3FileSystem implements IBackupFileSystem, S3FileSystemMBean
         }
         catch (Exception e)
         {
-            throw new RuntimeException(e);
+            logger.warn("Fail to register "+ mbeanName);
+            //throw new RuntimeException(e);
         }
 
         s3Client = new AmazonS3Client(cred.getAwsCredentialProvider());

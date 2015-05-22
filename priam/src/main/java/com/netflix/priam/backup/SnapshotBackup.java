@@ -91,13 +91,14 @@ public class SnapshotBackup extends AbstractBackup
             {
                 if (keyspaceDir.isFile())
                 		continue;
-                logger.debug("Entering {} keyspace..", keyspaceDir.getName());
+                logger.info("Entering {} keyspace..", keyspaceDir.getName());
                 for (File columnFamilyDir : keyspaceDir.listFiles())
                 {
-                    logger.debug("Entering {} columnFamily..", columnFamilyDir.getName());
+                    logger.info("Entering {} columnFamily..", columnFamilyDir.getName());
                     File snpDir = new File(columnFamilyDir, "snapshots");
                     if (!isValidBackupDir(keyspaceDir, columnFamilyDir, snpDir))
                         continue;
+
                     File snapshotDir = getValidSnapshot(columnFamilyDir, snpDir, snapshotName);
                     // Add files to this dir
                     if (null != snapshotDir)

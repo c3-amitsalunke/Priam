@@ -64,7 +64,8 @@ public abstract class Task implements Job, TaskMBean
         }
         catch (Exception e)
         {
-            throw Throwables.propagate(e);
+            logger.warn("Fail to register "+ mbeanName);
+            //throw Throwables.propagate(e);
         }
     }
 
