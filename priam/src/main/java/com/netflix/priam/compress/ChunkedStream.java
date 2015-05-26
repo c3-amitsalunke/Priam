@@ -31,8 +31,8 @@ public class ChunkedStream implements Iterator<byte[]>
 {
     private boolean hasnext = true;
     private ByteArrayOutputStream bos;
-//    private SnappyOutputStream compress;
-    private BufferedOutputStream compress;
+    private SnappyOutputStream compress;
+//    private BufferedOutputStream compress;
     private InputStream origin;
     private long chunkSize;
     private static int BYTES_TO_READ = 2048;
@@ -41,8 +41,8 @@ public class ChunkedStream implements Iterator<byte[]>
     {
         this.origin = is;
         this.bos = new ByteArrayOutputStream();
-//        this.compress = new SnappyOutputStream(bos);
-        this.compress = new BufferedOutputStream(bos);
+        this.compress = new SnappyOutputStream(bos);
+//        this.compress = new BufferedOutputStream(bos);
         this.chunkSize = chunkSize;
     }
 
